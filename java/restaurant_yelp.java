@@ -37,7 +37,8 @@ public class restaurant_yelp extends SeleneseTestCase{
         }
  
     private String BASE_WORK_FOLDER="./";
-    public void testNew() throws Exception {
+    @SuppressWarnings("null")
+	public void testNew() throws Exception {
     Boolean first = true;
     
     String logName = "rest_yelp_1_20111120.txt";
@@ -85,7 +86,7 @@ public class restaurant_yelp extends SeleneseTestCase{
  
  
     String id, inpt_name, ctgy, place, addr1, addr2, addr3, addr4, addr5, phone, price, nrate, message, err_message = null;
-    String[] x1 = null, y1 = null, x2 = null, y2 = null, x3 = null, y3 = null;
+    String[] x1 = new String[8], y1 = new String[8], x2 = new String[8], y2 = new String[8], x3 = new String[8], y3 = new String[8];
     
     
     /*while ((line = br.readLine()) != null){ 
@@ -117,7 +118,7 @@ public class restaurant_yelp extends SeleneseTestCase{
        
        
  
-          Thread.sleep(2000); 
+          //Thread.sleep(2000); 
 
         	   Thread.sleep(2000);
         	   place = getValueByXPath(place_xpath);
@@ -127,36 +128,44 @@ public class restaurant_yelp extends SeleneseTestCase{
         	   addr3 = getValueByXPath(addr3_xpath);
         	   addr4 = getValueByXPath(addr4_xpath);
         	   addr5 = getValueByXPath(addr5_xpath);
-        	   phone = getAttributeByXPath(phone_xpath);
-        	   price = getAttributeByXPath(price_xpath);
-        	   nrate = getAttributeByXPath(nrate_xpath); 
-        	   
+        	   phone = getValueByXPath(phone_xpath);
+        	   price = getValueByXPath(price_xpath);
+        	   nrate = getValueByXPath(nrate_xpath); 
+        	   System.out.println(nrate);  
         	   
         	   //Loop through business attributes -- Column 1
-        	   for(i=0; i<7; i++) { 
+        	   for(i=1; i<8; i++) { 
         		  x1[i] = getValueByXPath("id('bizAdditionalInfo')/dl[1]/dt[" + i + "]");
         		  y1[i] = getValueByXPath("id('bizAdditionalInfo')/dl[1]/dd[" + i + "]"); 
-        		  System.out.println(x1[i]);  
+        		  System.out.println(quote(x1[i]));  
         	   }
         	   
+        	   String a_x1 = join(x1,"|");
+        	   String a_y1 = join(y1,"|");
+        	   
         	   //Loop through business attributes -- Column 2
-        	   for(j=0; j<7; j++){
+        	   for(j=1; j<8; j++){
           		  x2[j] = getValueByXPath("id('bizAdditionalInfo')/dl[2]/dt[" + j + "]");
           		  y2[j] = getValueByXPath("id('bizAdditionalInfo')/dl[2]/dd[" + j + "]"); 
-          		  System.out.println(x2[j]);       		   
+          		  System.out.println(quote(x2[j]));       		   
          		   
          	   }
         	   
-        	   //Loop through business attributes -- Column 3
-        	   for(k=0; k<7; k++){
-          		  x3[j] = getValueByXPath("id('bizAdditionalInfo')/dl[3]/dt[" + k + "]");
-          		  y3[j] = getValueByXPath("id('bizAdditionalInfo')/dl[3]/dd[" + k + "]"); 
-          		  System.out.println(x3[j]);       		   
+        	   String a_x2 = join(x2,"|");
+        	   String a_y2 = join(y2,"|");
+        	   
+        	   //Loop through business attributes -- Column 3        	   
+        	   for(k=1; k<8; k++){
+          		  x3[k] = getValueByXPath("id('bizAdditionalInfo')/dl[3]/dt[" + k + "]"); 
+          		  y3[k] = getValueByXPath("id('bizAdditionalInfo')/dl[3]/dd[" + k + "]"); 
+          		  System.out.println(quote(x3[k]));       		   
          		   
          	   } 
-       
+        	   String a_x3 = join(x3,"|");
+        	   String a_y3 = join(y3,"|");
+               
         	   String[] scrapeDataArray = {quote(id),quote(ctgy),quote(place),quote(addr1),quote(addr2),quote(addr3),quote(addr4),quote(addr5),
-        			                       quote(phone),quote(price),quote(nrate),quote(url)};
+        			                       quote(phone),quote(price),quote(nrate),quote(url),quote(a_x1),quote(a_y1),quote(a_x2),quote(a_y2)};
         	   message = join(scrapeDataArray, ",");
        
         	   System.out.println(message);
