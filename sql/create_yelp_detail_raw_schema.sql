@@ -1,0 +1,26 @@
+drop table if exists yelp_detail_raw;
+create table if not exists yelp_detail_raw(
+   id int not null auto_increment,
+   src_id int null,
+   src_place varchar(128) null,
+   src_url varchar(664) null,
+   category varchar(36) null,
+   place varchar(64) null,
+   addr1 varchar(64) null,
+   addr2 varchar(64) null,
+   addr3 varchar(64) null,
+   addr4 varchar(64) null,
+   addr5 varchar(64) null,
+   phone varchar(18) null,
+   price varchar(12) null,
+   nrate int null,
+   url varchar(128) null,
+   c_array1 varchar(256) null,
+   d_array1 varchar(256) null,
+   c_array2 varchar(256) null,
+   d_array2 varchar(256) null,
+   c_array3 varchar(256) null,
+   d_array3 varchar(256) null,
+   date_added timestamp default CURRENT_TIMESTAMP,
+   primary key(id)
+);
