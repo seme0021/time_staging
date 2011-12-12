@@ -1,0 +1,16 @@
+<html>
+<body>
+   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+   <script>
+      $(function() {
+         $.getJSON("http://localhost:80/api/api.php",
+                   function(data) {
+                      console.log(data);
+                     }
+                 );
+       });
+   </script>
+
+</body>
+</html>

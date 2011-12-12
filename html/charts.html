@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<title>Highcharts Example</title>
+		
+		
+		<!-- 1. Add these JavaScript inclusions in the head of your page -->
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+		<script type="text/javascript" src="../js/highcharts.js"></script>
+		
+		<!-- 1a) Optional: add a theme file -->
+		<!--
+			<script type="text/javascript" src="../js/themes/gray.js"></script>
+		-->
+		
+		<!-- 1b) Optional: the exporting module -->
+		<script type="text/javascript" src="../js/modules/exporting.js"></script>
+		
+		
+		<!-- 2. Add the JavaScript to initialize the chart on document ready -->
+		<script type="text/javascript">
+		
+			var chart;
+                        var y;
+                        var y2;
+                        $(function(){
+                          //Get the JSON string and pass it to the cb function
+                          $.get("api/api.php", function(data){cb(data)});
+                         })
+ 
+                       function cb(data){
+                         //converts the JSON string to a JavaScript object
+                         eval("results="+data);
+                         y = results[0].y
+                         y2 = results[1].y
+                       }
+                         
+                        function requestData() {
+                           $.ajax({
+                              url: 'api/api.php',
+                              success: function(point) {
+                              var series = chart.series[0],
+                                  shift = series.data.length > 20; // shift if the series is longer than 20
+           
+            // add the point
+            var x = (new Date()).getTime();
+            chart.series[0].addPoint(['2010-12-01 00:00:00',10]);
+            chart.series[0].addPoint(['2010-12-02 00:00:00',12],true,true);
+            //chart.series[0].addPoint(y2,true, shift);
+            // call it again after one second
+           // setTimeout(requestData, 1000);    
+        },
+        cache: false
+    });
+}
+    $(document).ready(function() {
+    chart = new Highcharts.Chart({
+        chart: {
+            renderTo: 'container',
+            defaultSeriesType: 'spline',
+            events: {
+                load: requestData
+            }
+        },
+        title: {
+            text: 'Live random data'
+        },
+        xAxis: {
+            //categories: Highcharts.setOptions().lang.months,
+					events: {
+						setExtremes: function(event) {
+							//console.log('setExtremes', event.min, event.min);
+						}
+					},
+					title: {
+						text: 'Month'
+					},
+					type: 'datetime',
+					//maxZoom: 14 * 24 * 3600 * 1000,
+					minPadding: 0.05,
+					maxPadding: 0.05,
+					showLastLabel : true
+           
+},
+        yAxis: {
+            minPadding: 0.2,
+            maxPadding: 0.2,
+            title: {
+                text: 'Value',
+                margin: 80
+            }
+        },
+        series: [{
+            name: 'Random data',
+            data: []
+        }]
+    });        
+})			
+	
+		</script>
+		
+	</head>
+	<body>
+		
+		<!-- 3. Add the container -->
+		<div id="container" style="width: 800px; height: 400px; margin: 0 auto"></div>
+		
+				
+	</body>
+</html>
