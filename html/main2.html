@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+   <head>
+      <title>Sample AutoComplete Code </title>
+      <script src="/js/jquery-1.2.1.pack.js" type="text/javascript"><!--mce:0--></script><script type="text/javascript"><!--mce:1--></script>
+      <script src="/js/place_location.js" type="text/javascript">
+      </script>
+   <link type="text/css" rel="stylesheet" href="/css/main.css" />
+   </head>
+
+<body>
+
+   <div class="mainSearch">
+
+      <div id="navbar">
+         <div id="search">
+             <input type="text" class="autocomplete" placeholder="Enter Your Location" name="search" aria-autocomplete="list" aria-haspopup="true" role="textbox" id="inputString" onkeyup="lookup(this.value);" onblur="fill();" />
+         </div>
+         <div class="suggestionsBox" id="suggestions" style="display: none;">
+             <img src="upArrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" />
+             <div class="suggestionList" id="autoSuggestionsList">
+                                      &nbsp;
+             </div>
+          </div>
+          <div id="search2">
+             <input type="text" class="autocomplete" placeholder="Enter Name of the Restaurant" id="places" onkeyup="getPlaces(this.value);" onblur="fill();" />
+          </div>
+          <div class="placesBox" id="placesuggestions" style="display: none;">
+
+             <div class="placesList" id="autoPlacesList">
+                      &nbsp;
+             </div>
+         </div>
+      <div>
+
+
+   </div>
+</body>
+
+
+</html>
