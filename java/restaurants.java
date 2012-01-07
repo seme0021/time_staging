@@ -93,8 +93,8 @@ public class restaurants extends SeleneseTestCase{
        /*======SIGN ON TO FACEBOOK====================================*/
        
        
-       selenium.type("email","seme0021@gmail.com");
-       selenium.type("pass", "hophiper1");
+       selenium.type("email","");
+       selenium.type("pass", "");
        selenium.click("xpath=//*[@value='Log In']");
        Thread.sleep(2000);
        selenium.waitForPageToLoad("30000");
