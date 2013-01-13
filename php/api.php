@@ -1,6 +1,6 @@
 <?php
    //connect to db
-   $link = mysql_connect("localhost","root","hophiper1!") or die(mysql_error());
+   $link = mysql_connect("localhost",user,pass) or die(mysql_error());
    mysql_select_db("time_raw") or die(mysql_error());
 
    //methods
